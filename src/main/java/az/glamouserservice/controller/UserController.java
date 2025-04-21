@@ -1,6 +1,5 @@
 package az.glamouserservice.controller;
 
-import az.glamouserservice.dao.repository.UserRepository;
 import az.glamouserservice.model.request.UserRequest;
 import az.glamouserservice.model.response.UserResponse;
 import az.glamouserservice.service.abstraction.UserService;
@@ -26,6 +25,7 @@ public class UserController {
     @GetMapping("{id}")
     public UserResponse getUserById(@PathVariable Long id){
         return userService.getUserById(id);
+
     }
 
 
