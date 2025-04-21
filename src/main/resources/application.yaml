@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: glamo-user-service
+  datasource:
+    url: jdbc:postgresql://localhost:2021/user-db
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+server:
+  port: 8081
