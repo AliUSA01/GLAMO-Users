@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 04-20-2025
+      id: 1
       author: AliUSA01
       changes:
         - createTable:
@@ -8,34 +8,53 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  type: BIGINT
+                  type: bigint
                   autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
-
               - column:
                   name: full_name
-                  type: VARCHAR(255)
-
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
               - column:
                   name: email
-                  type: VARCHAR(255)
-
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: password
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
               - column:
                   name: phone
-                  type: VARCHAR(50)
-
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
               - column:
                   name: role
-                  type: VARCHAR(50)
-
+                  type: varchar(50)
+                  constraints:
+                    nullable: true
               - column:
                   name: created_at
-                  type: TIMESTAMP
-                  defaultValueComputed: CURRENT_TIMESTAMP
-
+                  type: timestamp
+                  constraints:
+                    nullable: false
               - column:
                   name: updated_at
-                  type: TIMESTAMP
-                  defaultValueComputed: CURRENT_TIMESTAMP
+                  type: timestamp
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 2
+      author: AliUSA01
+      changes:
+        - addUniqueConstraint:
+            tableName: users
+            columnNames: email
+            constraintName: uq_users_email
+

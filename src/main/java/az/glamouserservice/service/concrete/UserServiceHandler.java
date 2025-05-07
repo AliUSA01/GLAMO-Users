@@ -6,6 +6,7 @@ import az.glamouserservice.model.request.UserRequest;
 import az.glamouserservice.model.response.UserResponse;
 import az.glamouserservice.service.abstraction.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import static az.glamouserservice.mapper.UserMapper.USER_MAPPER;
@@ -16,10 +17,13 @@ import static java.lang.String.format;
 @RequiredArgsConstructor
 public class UserServiceHandler implements UserService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+
     @Override
     public void createUser(UserRequest userRequest) {
         var user = USER_MAPPER
                 .buildUserEntity(userRequest);
+        user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
 
         userRepository.save(user);
 

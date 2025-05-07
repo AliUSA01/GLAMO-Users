@@ -12,4 +12,14 @@ spring:
     open-in-view: false
 
 server:
-  port: 8081
+  port: 8080
+  address: 0.0.0.0
+jwt:
+  secret: YWxnb3JpdGhtc2VjdXJla2V5Zm9yamV0Z2VuZXJhdGVkZm9yaHM1Ng==
+  expiration: 36000000
+
+
+
+logging:
+  level:
+    org.springframework.security: DEBUG

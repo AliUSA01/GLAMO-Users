@@ -8,6 +8,7 @@ public class GlamoUserServiceApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(GlamoUserServiceApplication.class, args);
+
     }
 
 }

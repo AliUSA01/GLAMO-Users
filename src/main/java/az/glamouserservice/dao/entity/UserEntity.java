@@ -1,12 +1,12 @@
 package az.glamouserservice.dao.entity;
 
+import az.glamouserservice.model.enums.Roles;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Entity
 @AllArgsConstructor
@@ -24,10 +24,12 @@ public class UserEntity {
 
     private String email;
 
+    private String password;
+
     private String phone;
 
-    private String role;
-
+    @Enumerated(EnumType.STRING)
+    private Roles role;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -36,16 +38,4 @@ public class UserEntity {
     private LocalDateTime updatedAt;
 
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof UserEntity that)) return false;
-        return Objects.equals(id, that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }
