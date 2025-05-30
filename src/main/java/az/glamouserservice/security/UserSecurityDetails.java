@@ -15,7 +15,7 @@ public class UserSecurityDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(() -> "ROLE_" + user.getRole());
+        return Collections.singleton(() -> "ROLE" + user.getRole());
     }
 
     @Override
