@@ -6,6 +6,7 @@ import az.glamouserservice.service.abstraction.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -30,10 +31,17 @@ public class UserController {
 
 
     @PutMapping("{id}")
-    public void updateUser(@PathVariable Long id, @RequestBody @Valid UserRequest userRequest){
-        userService.updateUser(id, userRequest);
+    public ResponseEntity<String> updateUser(@PathVariable Long id,
+                                             @RequestBody @Valid UserRequest userRequest) {
+        try {
+            userService.updateUser(id, userRequest);
+            return ResponseEntity.ok("User updated successfully.");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Something went wrong: " + ex.getMessage());
+        }
     }
-
 
 
     @DeleteMapping("{id}")
